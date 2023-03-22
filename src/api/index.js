@@ -8,10 +8,8 @@ async function main() {
     dotenv.config()
 
     const app = express()
-    const port = 3000
-
     app.use(cors())
-    app.use(express.json())
+    const port = 3000
 
     app.listen(3000, () => console.log('Server running at port', port))
 

@@ -1,5 +1,5 @@
 import express from 'express'
-import cors from 'express'
+import cors from 'cors'
 import dotenv from 'dotenv'
 
 import { MailSender } from '../services/MailSender.js'

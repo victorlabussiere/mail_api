@@ -20,8 +20,8 @@ async function main() {
     })
 
     app.post('/mail', async (req, res) => {
-        const mailControl = new MailSender(req.body)
 
+        const mailControl = new MailSender(req.body)
         try {
             await mailControl.sendMail()
             return res.end()

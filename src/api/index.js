@@ -21,8 +21,7 @@ async function main() {
 
         try {
             const mailControl = new MailSender(req.body)
-            const response = await mailControl.sendMail()
-
+            await mailControl.sendMail()
             // if (response.status != 200) throw new Error()
             return res.end('operation finished')
 

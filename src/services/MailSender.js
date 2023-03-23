@@ -1,4 +1,3 @@
-import { MailCompositer } from "../utils/MailCompositer.js";
 import nodemailer from 'nodemailer'
 
 export class MailSender {

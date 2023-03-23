@@ -19,15 +19,13 @@ async function main() {
     })
 
     app.post('/mail', async (req, res) => {
+        const mailCompositer = new MailCompositer(req.body)
+        const mailControl = new MailSender(mailCompositer.serverConfig)
 
         try {
-            const mailCompositer = new MailCompositer(req.body)
-            const mailControl = new MailSender(mailCompositer.serverConfig)
 
             await mailControl.sendMail(mailCompositer.clientMessage)
-                .then(() => setTimeout(async () => {
-                    await mailControl.sendMail(mailCompositer.admMessage)
-                }, 1000))
+            await mailControl.sendMail(mailCompositer.admMessage)
 
             res.status(200)
             return res.end('operation finished')

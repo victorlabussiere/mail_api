@@ -12,8 +12,6 @@ export class MailSender {
         try {
             await transporter.sendMail(configs.admMessage)
             await transporter.sendMail(configs.clientMessage)
-
-            return { status: 200 }
         } catch (err) {
             return {
                 message: err.message,

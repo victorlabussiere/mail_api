@@ -3,6 +3,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 
 import { MailSender } from '../services/MailSender.js'
+import { MailCompositer } from '../utils/MailCompositer.js'
 
 async function main() {
     dotenv.config()
@@ -20,8 +21,12 @@ async function main() {
     app.post('/mail', async (req, res) => {
 
         try {
-            const mailControl = new MailSender(req.body)
-            await mailControl.sendMail()
+            const mailCompositer = new MailCompositer(req.body)
+            const mailControl = new MailSender(mailCompositer.serverConfig)
+
+            await mailControl.sendMail(mailCompositer.admMessage)
+            await mailControl.sendMail(mailCompositer.clientMessage)
+
             res.status(200)
             return res.end('operation finished')
 

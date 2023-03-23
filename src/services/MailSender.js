@@ -2,16 +2,14 @@ import { MailCompositer } from "../utils/MailCompositer.js";
 import nodemailer from 'nodemailer'
 
 export class MailSender {
-    constructor(client) {
-        this.client = { ...client }
+    constructor(serverConfig) {
+        this.serverConfig = serverConfig
     }
 
-    async sendMail() {
-        const configs = new MailCompositer(this.client)
-        const transporter = nodemailer.createTransport(configs.serverConfig)
+    async sendMail(clientConfig) {
+        const transporter = nodemailer.createTransport(this.serverConfig)
         try {
-            await transporter.sendMail(configs.admMessage)
-            await transporter.sendMail(configs.clientMessage)
+            return await transporter.sendMail(clientConfig)
         } catch (err) {
             return {
                 message: err.message,

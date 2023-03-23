@@ -17,7 +17,7 @@ export class MailCompositer {
             to: client.email,
             subject: `Mensagem de ${client.name}`,
             text: client.text,
-            replyTo: client.email
+            replyTo: client.email,
         }
 
         this.clientMessage = {
@@ -25,7 +25,11 @@ export class MailCompositer {
             to: client.email,
             subject: `Obrigado por usar minha plataforma!`,
             text: `Obrigado, ${client.name} pela mensagem! Caso tenha sido solicitado, entrarei em contato!`,
-            replyTo: process.env.ADM_MAIL
+            replyTo: process.env.ADM_MAIL,
+            envelope: {
+                from: this.serverConfig.auth.user,
+                to: client.email,
+            }
         }
     }
 }

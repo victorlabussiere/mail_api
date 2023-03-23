@@ -11,7 +11,7 @@ async function main() {
     app.use(cors())
     app.use(express.json())
 
-    const port = 4000
+    const port = process.env.PORT || 4000
 
     app.get('/', await function (req, res) {
         res.send({ 'server running at port': port })

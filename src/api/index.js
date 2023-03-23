@@ -9,9 +9,9 @@ async function main() {
 
     const app = express()
     app.use(cors())
-    const port = 3000
+    app.use(express.json())
 
-    app.listen(3000, () => console.log('Server running at port', port))
+    const port = 4000
 
     app.get('/', await function (req, res) {
         res.send({ 'server running at port': port })
@@ -19,14 +19,16 @@ async function main() {
 
     app.post('/mail', async (req, res) => {
 
-        const mailControl = new MailSender(req.body)
         try {
+            const mailControl = new MailSender(req.body)
             await mailControl.sendMail()
-            return res.end()
+            return res.end('operation finished')
+
         } catch (err) { console.log('erro de envio', err) }
 
     })
 
+    app.listen(port, () => console.log('Server running at port', port))
 }
 
 main()

@@ -17,7 +17,7 @@ export class MailCompositer {
             to: process.env.ADM_MAIL,
             replyTo: client.email,
             subject: `Mensagem do Client: ${client.name}`,
-            text: `\nMensagem de: ${client.name}\nConteúdo da Mensagem:${client.text}\nE-mail do Client: ${client.email}`,
+            text: `\nMensagem de: ${client.name}\nConteúdo da Mensagem: ${client.text}\nE-mail do Client: ${client.email}`,
             envelope: {
                 from: this.serverConfig.auth.user,
                 to: process.env.ADM_MAIL,

@@ -23,7 +23,7 @@ async function main() {
             const mailControl = new MailSender(req.body)
             const response = await mailControl.sendMail()
 
-            if (response.status !== 200) throw new Error()
+            if (response.status != 200) throw new Error()
             else return res.end('operation finished')
 
         } catch (err) { console.log('erro de envio', err) }

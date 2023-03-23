@@ -25,7 +25,7 @@ async function main() {
             const mailControl = new MailSender(mailCompositer.serverConfig)
 
             await mailControl.sendMail(mailCompositer.admMessage)
-            await mailControl.sendMail(mailCompositer.clientMessage)
+                .then(async () => await mailControl.sendMail(mailCompositer.clientMessage))
 
             res.status(200)
             return res.end('operation finished')
